@@ -1,0 +1,141 @@
+<h1>Form</h1>
+<!--<section>
+  <div>
+    <div>Details</div>
+    <form [formGroup]="details">
+      <div class="three-across">
+        <div>
+          <label for="firstName">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            [(ngModel)]="user.firstName"
+          />
+          <div
+            *ngIf="
+              details.get('firstName')?.hasError('required') &&
+              details.get('firstName')?.touched
+            "
+          >
+            Please enter first name
+          </div>
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            [(ngModel)]="user.lastName"
+          />
+          <div
+            *ngIf="
+              details.get('lastName')?.hasError('required') &&
+              details.get('lastName')?.touched
+            "
+          >
+            Please enter last name
+          </div>
+        </div>
+        <button
+          (click)="saveDetails()"
+          [disabled]="!details.valid"
+          *ngIf="!user.isEdit"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="user.isEdit"
+          (click)="$event.stopImmediatePropagation(); update(user)"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+-->
+<form class="example-form" [formGroup]="details" ngSubmit="nthg()">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>First name</mat-label>
+          <input
+            matInput
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            [(ngModel)]="user.firstName"
+          />
+        </mat-form-field>
+        <div
+          *ngIf="
+            details.get('firstName')?.hasError('required') &&
+            details.get('firstName')?.touched
+          "
+        >
+          Please enter first name
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Last name</mat-label>
+          <input
+            matInput
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            [(ngModel)]="user.lastName"
+          />
+        </mat-form-field>
+        <div
+          *ngIf="
+            details.get('lastName')?.hasError('required') &&
+            details.get('lastName')?.touched
+          "
+        >
+          Please enter last name
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-radio-group
+        formControlName="gender"
+        class="margin-left"
+        aria-label="Select gender"
+      >
+        <mat-radio-button value="male"> Male </mat-radio-button>
+        <mat-radio-button value="female"> Female </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <br />
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!details.valid"
+    *ngIf="!user.isEdit"
+    (click)="saveDetails()"
+  >
+    Submit
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!details.valid"
+    *ngIf="user.isEdit"
+    (click)="update(user)"
+  >
+    Update
+  </button>
+</form>
